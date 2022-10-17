@@ -1,7 +1,9 @@
 const express = require("express");
 const cors = require("cors");
-const bodyParser = require("body-parser");
 const db = require("./model");
+const routes = require("./routes/routes");
+var morgan = require("morgan");
+
 require("dotenv").config();
 /**Mongoose Connection  */
 db.mongoose
@@ -18,23 +20,22 @@ db.mongoose
   });
 
 const app = express();
-
+app.use(morgan("dev"));
 var corsOptions = {
-  origin: "http://localhost:8081",
+  //   origin: "http://localhost:8081",
+  origin: true,
 };
 
 app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
-app.use(bodyParser.json());
+app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
-// simple route
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
-});
+// api route
+app.use("/api", routes);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

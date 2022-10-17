@@ -5,6 +5,6 @@ mongoose.Promise = global.Promise;
 const db = {};
 db.mongoose = mongoose;
 db.url = process.env.DATABASE_URL;
-db.pokemons = require("./pokemon.model")(mongoose);
+db.pokemons = require("./pokemon");
 
 module.exports = db;
