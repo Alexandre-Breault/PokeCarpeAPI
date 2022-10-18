@@ -3,10 +3,12 @@ const Pokemon = db.pokemons;
 
 exports.create = async (req, res) => {
   console.log(req.body);
-  const { name } = req.body;
+  const { name, numero } = req.body;
+  
   try {
     const data = new Pokemon({
       name,
+      numero,
     });
     const dataToSave = await data.save();
     res.status(201).json(dataToSave);

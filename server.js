@@ -23,7 +23,7 @@ const app = express();
 app.use(morgan("dev"));
 var corsOptions = {
   //   origin: "http://localhost:8081",
-  origin: true,
+  origin: "http://127.0.0.1:5173",
 };
 
 app.use(cors(corsOptions));
