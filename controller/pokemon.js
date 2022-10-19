@@ -2,9 +2,8 @@ const db = require("../model");
 const Pokemon = db.pokemons;
 
 exports.create = async (req, res) => {
-  console.log(req.body);
   const { name, numero } = req.body;
-  
+
   try {
     const data = new Pokemon({
       name,

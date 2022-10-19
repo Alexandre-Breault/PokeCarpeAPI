@@ -22,8 +22,7 @@ db.mongoose
 const app = express();
 app.use(morgan("dev"));
 var corsOptions = {
-  //   origin: "http://localhost:8081",
-  origin: "http://127.0.0.1:5173",
+  origin: ["http://127.0.0.1:5173", "http://127.0.0.1:8080"],
 };
 
 app.use(cors(corsOptions));
