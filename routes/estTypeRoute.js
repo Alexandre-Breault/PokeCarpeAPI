@@ -5,6 +5,10 @@ const controllerEstType = require("../controller/estType");
 router.get("/get", async (req, res) => {
   controllerEstType.findAll(req, res);
 });
+
+router.get("/get/:name", async (req, res) => {
+  controllerEstType.findOne(req, res);
+});
 router.post("/post", async (req, res) => {
   controllerEstType.create(req, res);
 });

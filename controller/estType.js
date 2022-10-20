@@ -2,6 +2,7 @@
  * @author Alexandre BREAULT
  * @file controller pour le TYPE avec les fonctions liées.
  */
+const { pokemons } = require("../model");
 const db = require("../model");
 const estType = db.estType;
 const pokemon = db.pokemons;
@@ -60,8 +61,10 @@ exports.findAll = async (req, res) => {
  *  }]
  */
 exports.findOne = async (req, res) => {
+  const { name } = req.params;
   try {
-    const data = await estType.findOne(req.params.libelle);
+    const pokemonSearch = await pokemons.findOne({ name });
+    const data = await estType.find({ Pokemon: pokemonSearch });
     res.json(data);
   } catch (error) {
     res.status(500).json({ message: error.message });

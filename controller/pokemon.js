@@ -2,12 +2,12 @@ const db = require("../model");
 const Pokemon = db.pokemons;
 
 exports.create = async (req, res) => {
-  const { name, numero } = req.body;
-
+  const { name, numero, pokeball } = req.body;
   try {
     const data = new Pokemon({
       name,
       numero,
+      pokeball,
     });
     const dataToSave = await data.save();
     res.status(201).json(dataToSave);
