@@ -3,6 +3,8 @@
  * @file Modele mongoose POKEMON pokemon
  */
 const mongoose = require("mongoose");
+const uniqueValidator = require("mongoose-unique-validator");
+
 const enumPokeball = [
   "PokeBall",
   "SuperBall",
@@ -19,12 +21,13 @@ const enumPokeball = [
 const PokemonSchema = new mongoose.Schema({
   name: {
     type: String,
-    unique: true,
+    unique: [true, "Le nom du pokémon existe déjà! "],
     required: [true, "Le nom du pokémon est requie"],
   },
   numero: {
     type: Number,
     required: [true, "Le numéro du pokémon est requie"],
+    
   },
   pokeball: {
     type: String,
@@ -34,8 +37,6 @@ const PokemonSchema = new mongoose.Schema({
         "{VALUE} is not supported. Thanks choice in " + enumPokeball.toString(),
     },
   },
-
 });
-
 
 module.exports = mongoose.model("pokemon", PokemonSchema);

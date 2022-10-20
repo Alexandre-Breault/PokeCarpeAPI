@@ -1,3 +1,4 @@
+const { mongoose } = require("../model");
 const db = require("../model");
 const Pokemon = db.pokemons;
 
@@ -12,7 +13,12 @@ exports.create = async (req, res) => {
     const dataToSave = await data.save();
     res.status(201).json(dataToSave);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    if (error instanceof mongoose.Document.ValidationError) {
+      console.log(error);
+      res.status(400).json({ message: error.message });
+    } else {
+      res.status(400).json({ message: error.message });
+    }
   }
 };
 exports.findAll = async (req, res) => {
