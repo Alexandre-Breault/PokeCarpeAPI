@@ -14,6 +14,7 @@ const db = {
   pokemons: require("./pokemon"),
   type: require("./Type"),
   estType: require("./estType"),
+  pokeball: require("./pokeBall"),
 };
 
 module.exports = db;

@@ -3,8 +3,7 @@
  * @file Modele mongoose POKEMON pokemon
  */
 const mongoose = require("mongoose");
-const uniqueValidator = require("mongoose-unique-validator");
-
+const pokeBall = require("./pokeBall");
 const enumPokeball = [
   "PokeBall",
   "SuperBall",
@@ -21,20 +20,34 @@ const enumPokeball = [
 const PokemonSchema = new mongoose.Schema({
   name: {
     type: String,
-    unique: [true, "Le nom du pokémon existe déjà! "],
+    unique: true,
     required: [true, "Le nom du pokémon est requie"],
   },
   numero: {
     type: Number,
+    unique: [true, "Le numéro du pokémon existe déjà! "],
     required: [true, "Le numéro du pokémon est requie"],
-    
   },
   pokeball: {
     type: String,
-    enum: {
-      values: enumPokeball,
-      message:
-        "{VALUE} is not supported. Thanks choice in " + enumPokeball.toString(),
+    validate: {
+      validator: async function (v) {
+        let result = Promise.resolve(pokeBall.exists({ libelle: v }));
+        // let pokeballPromise = Promise.resolve();
+        let libellePokeObject = await pokeBall.find({}).select("libelle -_id");
+        let libelle = [];
+        for (const iterator of libellePokeObject) {
+          libelle.push(iterator.libelle);
+        }
+        if (result) {
+          throw Error(
+            v +
+              " is not supported. Please choose from the following options : " +
+              libelle.toLocaleString()
+          );
+        }
+        return result;
+      },
     },
   },
 });

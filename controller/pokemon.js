@@ -10,15 +10,18 @@ exports.create = async (req, res) => {
       numero,
       pokeball,
     });
-    const dataToSave = await data.save();
+
+    const dataToSave = await data.save().catch(({ errors }) => {
+      let errorBag = [];
+      Object.keys(errors).forEach((fieldName) => {
+        errorBag.push({ [fieldName]: errors[fieldName].message });
+      });
+      console.log({ message: errorBag });
+      res.status(400).json({ message: errorBag });
+    });
     res.status(201).json(dataToSave);
-  } catch (error) {
-    if (error instanceof mongoose.Document.ValidationError) {
-      console.log(error);
-      res.status(400).json({ message: error.message });
-    } else {
-      res.status(400).json({ message: error.message });
-    }
+  } catch (message) {
+    res.status(400).json({ message: message });
   }
 };
 exports.findAll = async (req, res) => {
