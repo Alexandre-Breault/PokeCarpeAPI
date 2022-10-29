@@ -159,8 +159,19 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "libelle",
+									"value": "PokeBall",
+									"type": "text"
+								}
+							]
+						},
+						"url": "http://localhost:8080/api/pokeball"
 					},
 					"response": []
 				}
