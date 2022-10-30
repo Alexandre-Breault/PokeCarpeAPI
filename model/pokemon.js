@@ -33,13 +33,15 @@ const PokemonSchema = new mongoose.Schema({
     validate: {
       validator: async function (v) {
         let result = Promise.resolve(pokeBall.exists({ libelle: v }));
-        // let pokeballPromise = Promise.resolve();
         let libellePokeObject = await pokeBall.find({}).select("libelle -_id");
         let libelle = [];
         for (const iterator of libellePokeObject) {
           libelle.push(iterator.libelle);
         }
-        if (result) {
+        let PokeBallR = await result.then((d) =>
+          pokeBall.findById({ _id: d._id }).select("libelle -_id")
+        );
+        if (PokeBallR.libelle.length < 0) {
           throw Error(
             v +
               " is not supported. Please choose from the following options : " +

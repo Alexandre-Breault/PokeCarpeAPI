@@ -2,7 +2,8 @@
 	"info": {
 		"_postman_id": "2590498a-0d74-4878-b40c-75532ec6523a",
 		"name": "PokeCarpeAPI",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17257002"
 	},
 	"item": [
 		{
@@ -10,23 +11,27 @@
 			"item": [
 				{
 					"name": "http://localhost:8080/api/pokemon/get",
-					"id": "92a56087-57cb-4e86-ae3c-2a083e7102c1",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:8080/api/pokemon/get"
+						"url": {
+							"raw": "http://localhost:8080/api/pokemon/get",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pokemon",
+								"get"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "http://localhost:8080/api/pokemon/post",
-					"id": "03cc2136-dd75-405a-b091-0bd30e5c71e3",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -50,54 +55,76 @@
 								}
 							]
 						},
-						"url": "http://localhost:8080/api/pokemon/post"
+						"url": {
+							"raw": "http://localhost:8080/api/pokemon/post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pokemon",
+								"post"
+							]
+						}
 					},
 					"response": []
 				}
-			],
-			"id": "cf34489e-5077-4ffa-a669-ce28c284bcf7"
+			]
 		},
 		{
 			"name": "Type",
 			"item": [
 				{
 					"name": "http://localhost:8080/api/type/get",
-					"id": "49377538-0718-47be-b0aa-9cf508fb4309",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:8080/api/type/get"
+						"url": {
+							"raw": "http://localhost:8080/api/type/get",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"type",
+								"get"
+							]
+						}
 					},
 					"response": []
 				}
-			],
-			"id": "2840244e-099d-4d29-a65d-ff7a78faeb67"
+			]
 		},
 		{
 			"name": "TypePokemon",
 			"item": [
 				{
 					"name": "http://localhost:8080/api/typePokemon/get",
-					"id": "bcc6e70a-66e5-48e3-b365-bcd35e691b8a",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:8080/api/typePokemon/get"
+						"url": {
+							"raw": "http://localhost:8080/api/typePokemon/get",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"typePokemon",
+								"get"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "http://localhost:8080/api/typePokemon/post",
-					"id": "6dd3557a-dc9a-4111-b6c7-dc7660cdab31",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -116,48 +143,71 @@
 								}
 							]
 						},
-						"url": "http://localhost:8080/api/typePokemon/post"
+						"url": {
+							"raw": "http://localhost:8080/api/typePokemon/post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"typePokemon",
+								"post"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "http://localhost:8080/api/typePokemon/get/:name",
-					"id": "f8b2038e-86a5-4485-9cc4-986d21f55552",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:8080/api/typePokemon/get/Lucario"
+						"url": {
+							"raw": "http://localhost:8080/api/typePokemon/get/Lucario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"typePokemon",
+								"get",
+								"Lucario"
+							]
+						}
 					},
 					"response": []
 				}
-			],
-			"id": "1e0fc2d0-51e9-47b8-9e3c-7e8f5330d9e4"
+			]
 		},
 		{
 			"name": "PokeBall",
 			"item": [
 				{
 					"name": "get",
-					"id": "04dc06f8-cca9-45b6-88db-95cdb957eeff",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:8080/api/pokeball"
+						"url": {
+							"raw": "http://localhost:8080/api/pokeball",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pokeball"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Post",
-					"id": "6b041bc2-3da0-434d-8e44-24df28474ac1",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -171,12 +221,22 @@
 								}
 							]
 						},
-						"url": "http://localhost:8080/api/pokeball"
+						"url": {
+							"raw": "http://localhost:8080/api/pokeball",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pokeball"
+							]
+						}
 					},
 					"response": []
 				}
-			],
-			"id": "ccb0b791-2a6e-4825-baec-3e11fa08ba7d"
+			]
 		}
 	]
 }

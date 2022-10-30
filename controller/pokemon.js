@@ -4,25 +4,26 @@ const Pokemon = db.pokemons;
 
 exports.create = async (req, res) => {
   const { name, numero, pokeball } = req.body;
-  try {
-    const data = new Pokemon({
-      name,
-      numero,
-      pokeball,
+  let errorBag = [];
+  new Pokemon({
+    name,
+    numero,
+    pokeball: pokeball.trim(),
+  })
+    .save()
+    .then(() => {
+      return res.status(201).json({ message: "Success" });
+    })
+    .catch((errors) => {
+      console.log(errors.errors);
+      if (errors !== undefined && errors !== numero) {
+        Object.keys(errors.errors).forEach((fieldName) => {
+          errorBag.push({ [fieldName]: errors.errors[fieldName].message });
+        });
+        console.log(errorBag);
+      }
+      return res.status(400).json({ message: errorBag });
     });
-
-    const dataToSave = await data.save().catch(({ errors }) => {
-      let errorBag = [];
-      Object.keys(errors).forEach((fieldName) => {
-        errorBag.push({ [fieldName]: errors[fieldName].message });
-      });
-      console.log({ message: errorBag });
-      res.status(400).json({ message: errorBag });
-    });
-    res.status(201).json(dataToSave);
-  } catch (message) {
-    res.status(400).json({ message: message });
-  }
 };
 exports.findAll = async (req, res) => {
   try {
