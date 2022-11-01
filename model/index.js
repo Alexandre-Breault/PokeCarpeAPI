@@ -12,7 +12,7 @@ const db = {
   mongoose: mongoose,
   url: process.env.DATABASE_URL,
   pokemons: require("./pokemon"),
-  type: require("./Type"),
+  Type: require("./Type"),
   estType: require("./estType"),
   pokeball: require("./pokeBall"),
 };

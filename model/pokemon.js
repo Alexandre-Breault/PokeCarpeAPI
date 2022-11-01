@@ -4,6 +4,7 @@
  */
 const mongoose = require("mongoose");
 const pokeBall = require("./pokeBall");
+const Type = require("./Type");
 const enumPokeball = [
   "PokeBall",
   "SuperBall",
@@ -51,6 +52,7 @@ const PokemonSchema = new mongoose.Schema({
         return result;
       },
     },
+    types: [Type.schema],
   },
 });
 
