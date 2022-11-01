@@ -4,26 +4,37 @@ const Pokemon = db.pokemons;
 
 exports.create = async (req, res) => {
   console.log(req.body);
-  const { name, numero, pokeball, type } = req.body;
+  const { name, numero, pokeball, types } = req.body;
   let errorBag = [];
+  console.log(name, numero, pokeball, types);
   new Pokemon({
     name,
     numero,
     pokeball: pokeball.trim(),
-    type,
+    types,
   })
     .save()
     .then(() => {
       return res.status(201).json({ message: "Success" });
     })
     .catch((errors) => {
-      console.log(errors.errors);
-      console.log(errors);
       if (errors !== undefined && errors !== numero && errors.errors) {
         Object.keys(errors.errors).forEach((fieldName) => {
           errorBag.push({ [fieldName]: errors.errors[fieldName].message });
         });
-        console.log(errorBag);
+      } else if (errors.name === "MongoServerError" && errors.code === 11000) {
+        let field = errors.message.split("pokeCarpe.")[1];
+        let jsonString = field.split("key: ")[1];
+        let fieldName = jsonString
+          .substring(jsonString.indexOf("{") + 1, jsonString.lastIndexOf(": "))
+          .trim();
+        let data = jsonString
+          .substring(jsonString.indexOf('"') + 1, jsonString.lastIndexOf('"'))
+          .trim();
+        console.log(jsonString);
+        console.log(data);
+        console.log(fieldName);
+        errorBag.push({ fieldName: `Le ${fieldName} ${data} existe déjà` });
       }
       return res.status(400).json({ message: errorBag });
     });

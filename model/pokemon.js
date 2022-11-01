@@ -21,13 +21,13 @@ const enumPokeball = [
 const PokemonSchema = new mongoose.Schema({
   name: {
     type: String,
-    unique: true,
-    required: [true, "Le nom du pokémon est requie"],
+    unique: [true, "Le nom du pokémon existe déjà! "],
+    required: [true, "Le nom du pokémon est requie."],
   },
   numero: {
     type: Number,
     unique: [true, "Le numéro du pokémon existe déjà! "],
-    required: [true, "Le numéro du pokémon est requie"],
+    required: [true, "Le numéro du pokémon est requie."],
   },
   pokeball: {
     type: String,
@@ -52,7 +52,17 @@ const PokemonSchema = new mongoose.Schema({
         return result;
       },
     },
-    types: [Type.schema],
+  },
+  types: {
+    type: [String],
+    validate: {
+      validator: function (v) {
+        if (v.length === 0) {
+          throw Error("Sélectionnez au moins un type pour le pokemon.");
+        }
+        return v;
+      },
+    },
   },
 });
 

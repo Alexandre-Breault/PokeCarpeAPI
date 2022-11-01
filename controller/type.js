@@ -3,7 +3,7 @@
  * @file controller pour le TYPE avec les fonctions liées.
  */
 const db = require("../model");
-const Type = db.type;
+const Type = db.Type;
 /**
  * Créer un nouveau type pokemon
  * @param {Request} req
